@@ -1,6 +1,12 @@
 import ProductDetails from "@/app/Components/ProductDetails/ProductDetails";
 
-function page(props: any) {
+type PageProps = {
+    searchParams: {
+        id: string;
+    };
+};
+
+function page(props: PageProps) {
 
     const productId: string = props.searchParams.id
 

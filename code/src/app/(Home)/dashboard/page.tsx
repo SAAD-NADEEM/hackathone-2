@@ -5,7 +5,7 @@ import { OrderFormData } from "@/app/Components/Utils/type";
 import { client } from "@/sanity/lib/client";
 import { useEffect, useState } from "react";
 
-function page() {
+function Page() {
 
     const [ordersData, setOrdersData] = useState([])
 
@@ -23,17 +23,17 @@ function page() {
 
     useEffect(() => {
         getOrders()
-    },[])
+    }, [])
 
     return (
         <section className="ctn-width-home flex-1 mx-auto | lg:my-8">
             {
-                ordersData.map((order: OrderFormData) => (
-                    <Order orders={order} />
+                ordersData.map((order: OrderFormData, index: number) => (
+                    <Order key={index} orders={order} />
                 ))
             }
         </section>
     );
 };
 
-export default page;
+export default Page;
