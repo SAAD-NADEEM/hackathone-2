@@ -50,7 +50,7 @@ function ProductDetails(props: { productId: string; }) {
                 <ProductDescription car={car} />
             </div>
             <div className="w-full">
-                <PopularCars pageType="base" />
+                <PopularCars />
             </div>
         </section>
     );
