@@ -4,7 +4,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import Pick from "../Icons/Pick";
 import { Separator } from "@/components/ui/separator";
 
 interface Props {

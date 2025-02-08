@@ -3,6 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: {category: string} }) {
 
+    // Verification headers
+    if (request.headers.get("x-secret-key") !== process.env.SECRET_KEY) {
+        return NextResponse.json({message: 'Unauthorized'}, {status: 401});
+    }
+
     console.log('fetched in the dynamic route')
 
     const query = `*[_type == "car" && "${params.category}" in tags] {

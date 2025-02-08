@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HeaderDesktop from "../Components/Headers/Desktop/HeaderDesktop";
 import HeaderMobileHome from "../Components/Headers/Mobile/HeaderMobileHome";
 import FooterDesktop from "../Components/Footers/FooterDesktop";
+import FooterMobile from "../Components/Footers/FooterMobile";
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
       <HeaderMobileHome />
       {children}
       <FooterDesktop />
+      <FooterMobile />
     </>
   );
 }

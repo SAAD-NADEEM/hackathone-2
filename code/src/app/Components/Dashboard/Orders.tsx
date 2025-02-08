@@ -17,7 +17,15 @@ function Order({ orders }: { orders: OrderFormData }) {
 
     const handleReq = async () => {
 
-        const res = await fetch(`/api/${orders.carId}`)
+        const res = await fetch(`/api/${orders.carId}`,
+            {
+                cache: 'no-store',
+                method: 'GET',
+                headers: {
+                    "x-secret-key": process.env.NEXT_PUBLIC_SECRET_KEY as string
+                },
+            }
+        )
 
         try {
 

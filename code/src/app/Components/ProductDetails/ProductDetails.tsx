@@ -14,7 +14,15 @@ function ProductDetails(props: { productId: string; }) {
 
     const handleReq = async () => {
 
-        const res = await fetch(`/api/${productId}`)
+        const res = await fetch(`/api/${productId}`,
+            {
+                cache: 'no-store',
+                method: 'GET',
+                headers: {
+                    "x-secret-key": process.env.NEXT_PUBLIC_SECRET_KEY as string
+                },
+            }
+        )
 
         try {
 

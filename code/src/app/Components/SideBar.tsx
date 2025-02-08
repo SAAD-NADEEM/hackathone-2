@@ -3,14 +3,13 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 
 function Label({ text, quantity, category, checked, onChange }: { 
     text: string, 
     quantity: string, 
     category: string, 
     checked: boolean, 
-    onChange: (checked: boolean) => void 
+    onChange: (category: string, value: string, checked: boolean) => void;
 }) {
 
 
@@ -19,7 +18,7 @@ function Label({ text, quantity, category, checked, onChange }: {
              <Checkbox 
                 id={text}
                 checked={checked}
-                onCheckedChange={onChange}
+                onCheckedChange={(checked) => onChange(category, text, Boolean(checked))} 
                 className="data-[state=checked]:bg-prm-500 data-[state=checked]:border-prm-500 border-second-300" />
             <label htmlFor={text} className="ml-2 font-semibold text-[20px] leading-6 tracking-[-2%] text-justify text-second-400">
                 {text}
@@ -81,7 +80,7 @@ function SideBar() {
                             quantity={text.quantity}
                             category="type"
                             checked={searchParams.getAll('type').includes(text.text)}
-                            onChange={(checked: any) => handleFilterChange('type', text.text, checked)} />
+                            onChange={handleFilterChange} />
                     ))}
 
                 </ul>
@@ -93,7 +92,7 @@ function SideBar() {
                         quantity={text.quantity}
                         category="capacity"
                         checked={searchParams.getAll('capacity').includes(text.text)}
-                        onChange={(checked: any) => handleFilterChange('capacity', text.text, checked)} />
+                        onChange={handleFilterChange} />
                     ))}
                 </ul>
             </div>

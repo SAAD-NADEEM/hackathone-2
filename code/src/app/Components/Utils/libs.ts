@@ -10,3 +10,7 @@ export const removePlus = (data: string) => {
 export const dataConvert = (data: string[]) => {
     return data.map(removePlus)
 } 
+
+export const handleRefresh = () => {
+    window.location.href = "/"; // Forces a full page reload
+  };

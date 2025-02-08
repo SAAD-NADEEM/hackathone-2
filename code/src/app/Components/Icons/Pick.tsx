@@ -1,8 +1,4 @@
-interface IconProps {
-    className?: string;
-}
-
-function Pick({ className }: IconProps) {
+function Pick() {
 
     return (
         <svg

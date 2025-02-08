@@ -14,6 +14,12 @@ const sanityClient = createClient({
 
 
 export async function POST(req: NextRequest) {
+
+    // Verification headers
+    if (req.headers.get("x-secret-key") !== process.env.SECRET_KEY) {
+        return NextResponse.json({message: 'Unauthorized'}, {status: 401});
+    }
+
     const user = await currentUser();
     const currentUserId = user?.id;
     const orderData: OrderFormData = await req.json();
@@ -56,6 +62,6 @@ export async function POST(req: NextRequest) {
 
 
     } catch (sanityError) {
-        return NextResponse.json({message: 'Failed to create order'}, {status: 500});
+        return NextResponse.json({message: 'Failed to create order', sanityError}, {status: 500});
     }
 }

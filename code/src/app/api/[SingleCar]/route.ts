@@ -3,7 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: {SingleCar: string} }) {
 
-    
+    // Verification headers
+    if (request.headers.get("x-secret-key") !== process.env.SECRET_KEY) {
+        return NextResponse.json({message: 'Unauthorized'}, {status: 401});
+    }
+
     console.log("this is id the" ,params.SingleCar)
 
     const query = `*[_type == "car" && _id == '${params.SingleCar}'] {

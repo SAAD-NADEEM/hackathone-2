@@ -1,27 +1,23 @@
-"use client"
-
 import Like from "@/app/Components/Icons/Like";
 import Notifications from "@/app/Components/Icons/Notifications";
 import Settings from "@/app/Components/Icons/Settings";
 import Filter from "@/app/Components/Icons/Filter";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 
 
 function HeaderDesktop() {
 
-    const router = useRouter()
-    const home = () => {
-        router.push('/')
-    }
 
     return (
         <header className="bg-bg-500 hidden lg:flex ctn-width-base mx-auto py-[40px] pl-[60px] pr-[32px] justify-between">
             <div className="flex w-full">
-                <h1 onClick={home} className="text-prm-500 text-[32px] cursor-pointer leading-[44px] tracking-[-3%] font-bold mr-16">MORENT</h1>
+                <Link href='/' replace >
+                    <h1 className="text-prm-500 text-[32px] cursor-pointer leading-[44px] tracking-[-3%] font-bold mr-16">MORENT</h1>
+                </Link>
                 <div className="flex border-primary rounded-full px-[20px] py-[10px] gap-[20px] basis-[492px]">
                     <Search className="h-6 w-6 text-second-400" />
                     <input type="text" placeholder="Search something hear"
@@ -51,7 +47,7 @@ function HeaderDesktop() {
                                 userButtonPopoverFooter: "hidden", // Hide the footer
                             },
                         }}
-                        userProfileUrl="/dashboard" />
+                            userProfileUrl="/dashboard" />
                     </ SignedIn>
                     <SignedOut>
                         <SignInButton>

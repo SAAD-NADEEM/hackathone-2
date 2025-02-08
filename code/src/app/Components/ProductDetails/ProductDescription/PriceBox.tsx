@@ -7,7 +7,7 @@ interface Price {
     originalPrice?: string | null;
 }
 
-function PriceBox({ price, id, name }: { price: Price, id: string, name: string }) {
+function PriceBox({ price, id }: { price: Price, id: string }) {
 
     return (
         <div className="flex justify-between items-center mt-4">

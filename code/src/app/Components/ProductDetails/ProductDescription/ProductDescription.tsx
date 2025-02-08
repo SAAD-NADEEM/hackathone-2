@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react";
 import PriceBox from "./PriceBox";
 import Specifications from "./Specifications";
 import ProductTitle from "./Title";
@@ -52,7 +51,7 @@ function ProductDescription(props: { car: Car | null }) {
                     </p>
                 </div>
                 <Specifications specs={specs} />
-                <PriceBox price={price} id={car._id} name={car.name}/>
+                <PriceBox price={price} id={car._id}/>
             </div>
         ) : <Skeleton className="min-h-[318px]  min-w-[327px] flex-1"/>
     );

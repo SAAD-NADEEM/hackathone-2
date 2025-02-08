@@ -19,14 +19,18 @@ interface Cars {
     tags: string[];
     images: string[];
 }
-function PopularCars({ pageType }: { pageType: "home" | "base" }) {
+function PopularCars() {
 
     const [cars, SetCars] = useState<Cars[] | null>(null)
 
     const handleReq = async () => {
 
         const res = await fetch('/api/popular', {
-            cache: 'no-store'
+            cache: 'no-store',
+            method: 'GET',
+            headers: {
+                "x-secret-key": process.env.NEXT_PUBLIC_SECRET_KEY as string
+            },
         })
 
         try {
@@ -94,7 +98,7 @@ function PopularCars({ pageType }: { pageType: "home" | "base" }) {
                 onMouseLeave={handleMouseLeave}
                 className="flex flex-col flex-wrap gap-8 overflow-scroll no-scrollbar mt-[20px] h-[286px] | lg:h-[388px]">
                 {cars?.length ?
-                    cars.map((car, _) => (
+                    cars.map((car) => (
                         <ProductCard key={car._id} name={car.name}
                             type={car.type}
                             litres={car.fuelCapacity}

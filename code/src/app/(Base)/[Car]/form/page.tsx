@@ -4,12 +4,25 @@ import { OrderFormData } from "@/app/Components/Utils/type";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
+export interface ExtendedOrderFormData extends OrderFormData {
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  pickupLocation: string;
+  pickupTime: string;
+  dropoffLocation: string;
+  dropoffTime: string;
+  paymentMethod: string;
+}
+
+
 const RentalCarForm = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ExtendedOrderFormData>();
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
 
-  const handleSubmitForm = async (data: any) => {
+  const handleSubmitForm = async (data: ExtendedOrderFormData) => {
     try {
       // 1. Add 'carId' to the data object:
       const { pickupDate, dropoffDate } = data;
@@ -20,6 +33,7 @@ const RentalCarForm = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-secret-key': process.env.NEXT_PUBLIC_SECRET_KEY as string,
         },
         body: JSON.stringify(orderData),
       });

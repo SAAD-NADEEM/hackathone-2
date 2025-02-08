@@ -1,4 +1,5 @@
 import FooterDesktop from "../Components/Footers/FooterDesktop";
+import FooterMobile from "../Components/Footers/FooterMobile";
 import HeaderDesktop from "../Components/Headers/Desktop/HeaderDesktop";
 import HeaderMobileBase from "../Components/Headers/Mobile/HeaderMobileBase";
 import SideBar from "../Components/SideBar";
@@ -18,6 +19,7 @@ export default function CategoryLayout({
                 {children}
             </main>
             <FooterDesktop />
+            <FooterMobile />
         </>
     );
 }

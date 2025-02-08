@@ -1,7 +1,12 @@
 import { client } from "@/sanity/lib/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request :NextRequest) {
+
+    // Verification headers
+    if (request.headers.get("x-secret-key") !== process.env.SECRET_KEY) {
+        return NextResponse.json({message: 'Unauthorized'}, {status: 401});
+    }
 
     const query = `*[_type == "car" && "recommended" in tags] [0..3] {
         _id,

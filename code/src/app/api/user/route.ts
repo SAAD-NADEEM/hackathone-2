@@ -81,8 +81,8 @@ export async function POST(req: NextRequest) {
     }
     
 
-  } catch (error) {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json({ error: "Server error", err }, { status: 500 });
   }
 }
 

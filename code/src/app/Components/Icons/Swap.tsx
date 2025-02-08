@@ -1,8 +1,4 @@
-interface IconProps {
-    className?: string;
-}
-
-function Swap({ className }: IconProps) {
+function Swap() {
 
     return (
         <svg

@@ -31,6 +31,10 @@ function RecomendationCar({ className, cols, pageType, fetchType }: { className?
 
         const res = await fetch(`/api/${fetchType}`, {
             cache: 'no-store',
+            method: 'GET',
+            headers: {
+                "x-secret-key": process.env.NEXT_PUBLIC_SECRET_KEY as string
+            },
         })
 
         try {
